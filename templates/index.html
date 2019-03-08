@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+        <title>Manchester Kiosk</title>
+    </head>
+
+    <body>
+        <div class="container mt-5">
+            <!-- This is the header-->
+            <div class="row">
+
+                <!-- Page title -->
+                <div class="col-md-10">
+                    <h1>Manchester Information Kiosk</h1>
+                </div>
+
+                <!-- Weather display -->
+                <div class="col-md-2 text-right">
+                    <img src="http://openweathermap.org/img/w/{{ weather.weather.0.icon }}.png">
+                    <p>{{ weather.weather.0.main }} {{ weather.main.temp }} degrees.</p>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- This is the left column -->
+                <div class="col-md-6">
+
+                    <!-- This is the news panel -->
+                    <div class="accordion" id="news">
+                        {% for article in news %}
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>
+                                    <button class="btn btn-link text-left" type="button" data-toggle="collapse" data-target="#news-{{ loop.index }}">
+                                        {{ article.headline }}
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div id="news-{{ loop.index }}" class="collapse {% if loop.index == 0 %}show{% endif %}" data-parent="#news">
+                                <div class="card-body">
+                                    {{ article.content|safe }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- This is the right column -->
+                <div class="col-md-6">
+
+                    <!-- This is the photo panel -->
+                    <div class="accordion" id="photo">
+                        {% for photo in photos %}
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>
+                                    <button class="btn btn-link text-left" type="button" data-toggle="collapse" data-target="#photo-{{ loop.index }}">
+                                        Photo {{ photo.id }}
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div id="photo-{{ loop.index }}" class="collapse {% if loop.index == 0 %}show{% endif %}" data-parent="#photo">
+                                <div class="card-body">
+                                    <img class="img-fluid" src="{{ photo.url }}">
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- This is the additional links section -->
+                    <div class="list-group mt-5">
+                        <a href="#" class="list-group-item list-group-item-action">Map</a>
+                        <a href="/credits/" class="list-group-item list-group-item-action">Credits</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    </body>
+</html>
