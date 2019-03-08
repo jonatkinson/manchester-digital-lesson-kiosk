@@ -23,7 +23,7 @@
 
                 <!-- Weather display -->
                 <div class="col-md-2 text-right">
-                    <img src="http://openweathermap.org/img/w/{{ weather.weather.0.icon }}.png">
+                    <img src="http://openweathermap.org/img/w/{{ weather.weather.0.icon }}.gif">
                     <p>{{ weather.weather.0.main }} {{ weather.main.temp }} degrees.</p>
                 </div>
             </div>
@@ -72,7 +72,7 @@
 
                             <div id="photo-{{ loop.index }}" class="collapse {% if loop.index == 0 %}show{% endif %}" data-parent="#photo">
                                 <div class="card-body">
-                                    <img class="img-fluid" src="{{ photo.url }}">
+                                    <img class="img-fluid" src="{{ photo.url }}" width="200px">
                                 </div>
                             </div>
                         </div>
