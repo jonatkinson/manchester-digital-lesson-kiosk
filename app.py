@@ -88,7 +88,7 @@ def fetch_photos(n):
     data = []
 
     # First, we search for photos taken in Manchester.
-    response = requests.get(f'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key={FLICKR_API_KEY}&tags=Manchester&format=json&nojsoncallback=1')
+    response = requests.get(f'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key={FLICKR_API_KEY}&lat=53.48&lon=-2.23&radius=10&radius_units=km&format=json&nojsoncallback=1')
 
     # Now loop through the photos.
     for photo in sample(response.json()['photos']['photo'], n):
@@ -104,8 +104,9 @@ def fetch_photos(n):
 
         # Store our photo ID and URL.
         data.append({
+            'title': photo['title'],
             'id': photo['id'],
-            'url': url
+            'url': url,
         })
 
     # Send back our list of photos.
